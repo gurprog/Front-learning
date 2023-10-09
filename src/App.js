@@ -1,31 +1,34 @@
-import { useMemo, useState, useRef, useEffect } from "react";
-import ClassCounter from "./Components/ClassCounter";
-import Counter from "./Components/Counter";
-import PostItem from "./Components/PostItem";
-import TextInput from "./Components/TextInput";
-import PostList from "./Components/PostList";
-import MyButton from "./UI/button/MyButton";
-import MyInput from "./UI/input/MyInput";
-import PostForm from "./Components/PostForm";
-import PostFilter from "./Components/PostFilter";
-import MyModal from "./UI/modal/MyModal";
-import { usePosts } from "./hooks/usePosts";
-import PostService from "./API/PostService";
-import Loader from "./UI/Loader/Loader";
-import { useFetching } from "./hooks/useFetching";
-import { getPageCount } from "./utils/pages";
-import { usePagination } from "./hooks/usePagination";
-import Pagination from "./UI/pagination/pagination";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Link } from "react-router-dom";
 import About from "./pages/About";
+import Posts from "./pages/Posts";
+import Home from "./pages/Home";
+import { Navbar } from "react-bootstrap";
 
 function App() {
   return (
     <BrowserRouter>
+      <div className="navbar">
+        <div className="navbar__links">
+          <Link to="/">Home</Link>
+          <Link to="/about">О сайте</Link>
+          <Link to="/posts">Посты</Link>
+        </div>
+      </div>
+      {/* <nav>
+        <ul>
+          <li>
+            <Link to={"/posts"}>Посты</Link>
+          </li>
+          <li>
+            <Link to={"/about"}>О создателях</Link>
+          </li>
+        </ul>
+      </nav> */}
+      {/* <Navbar /> */}
       <Routes>
-        <Route>
-          <About />
-        </Route>
+        <Route path="/" element={<Home />} />
+        <Route path="/posts" element={<Posts />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </BrowserRouter>
   );
